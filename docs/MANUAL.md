@@ -86,5 +86,5 @@ pinned is being explored as part of the larger menu-bar redesign.
 ## Requirements
 
 macOS 13 Ventura or later. Pre-Ventura (10.13 - 12.x): use
-[v1.10](https://github.com/dwarvesf/hidden/releases/tag/v1.10), the last release
-on the old autostart mechanism.
+[upstream release v1.10](https://github.com/dwarvesf/hidden/releases/tag/v1.10), the last
+release published by the original Dwarves Foundation project (the fork does not ship pre-Ventura builds).

@@ -64,8 +64,9 @@ installed app, test the dev build, then re-import and relaunch.
    listing closed issues.
 4. App Store (separate lane): the MAS listing has lagged GitHub since v1.8
    (issues #281/#202); decide deliberately whether a release goes there too.
-5. Homebrew cask (`brew install --cask hiddenbar`) follows the GitHub release
-   artifact; notarization matters (issue #219).
+5. Homebrew: upstream has the official cask (`brew install --cask hiddenbar`);
+    this fork's macOS 27 build ships via its own cask — see the
+    [Casks](https://github.com/xvoland/hidden/blob/main/Casks) directory in this repo.
 6. Before any public release after the SMAppService migration: one
    upgrade-path run from a launcher-era build (v1.9 or older) verifying System
    Settings shows no ghost LauncherApplication login item.

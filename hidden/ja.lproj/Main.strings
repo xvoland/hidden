@@ -245,7 +245,7 @@
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
 "S0p-oC-mLd.title" = "Jump to Selection";
 
-/* Class = "NSTextFieldCell"; title = "Follow us on Twitter"; ObjectID = "Tba-C7-Zr8"; */
+/* Class = "NSTextFieldCell"; title = "Fork on GitHub"; ObjectID = "Tba-C7-Zr8"; */
 "Tba-C7-Zr8.title" = "Twitterでフォロー";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
@@ -281,7 +281,7 @@
 /* Class = "NSTextFieldCell"; title = "Menu bar cleaner"; ObjectID = "X4W-sr-Z32"; */
 "X4W-sr-Z32.title" = "Menu bar cleaner";
 
-/* Class = "NSTextFieldCell"; title = "Know more about us"; ObjectID = "Xb1-xM-sYy"; */
+/* Class = "NSTextFieldCell"; title = "Know more about the fork"; ObjectID = "Xb1-xM-sYy"; */
 "Xb1-xM-sYy.title" = "私たちを知る";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
@@ -368,7 +368,7 @@
 /* Class = "NSButtonCell"; title = "Set Shortcut"; ObjectID = "fc2-jD-QNf"; */
 "fc2-jD-QNf.title" = "ショットキーを設定";
 
-/* Class = "NSTextFieldCell"; title = "This app is fully open source"; ObjectID = "fqc-io-QOP"; */
+/* Class = "NSTextFieldCell"; title = "This fork is fully open source"; ObjectID = "fqc-io-QOP"; */
 "fqc-io-QOP.title" = "このアプリはフルオープンソース";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
@@ -449,7 +449,7 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Smart Dashes";
 
-/* Class = "NSTextFieldCell"; title = "Email us"; ObjectID = "sRr-sO-uV0"; */
+/* Class = "NSTextFieldCell"; title = "Contact the maintainer"; ObjectID = "sRr-sO-uV0"; */
 "sRr-sO-uV0.title" = "メールで連絡";
 
 /* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
