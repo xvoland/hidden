@@ -1,5 +1,7 @@
 # Contributing
 
+This is a fork maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net, focused on macOS 27 Golden Gate support. The macOS 27 hide-mechanism fix comes from upstream [PR #396](https://github.com/dwarvesf/hidden/pull/396) by Skyler (skuthus); this fork builds and verifies it. Upstream project © Dwarves Foundation.
+
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change. 
 

@@ -18,6 +18,14 @@
 
 > **Fork note.** This fork adds **macOS 27 Golden Gate** menu-bar hiding support and is maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net. The underlying fix is [PR #396](https://github.com/dwarvesf/hidden/pull/396) (upstream) by Skyler (skuthus); this fork builds, verifies, and ships it for macOS 27. macOS 27 support contributed by Vitalii Tereshchuk.
 
+## Maintainer (this fork)
+
+| Role | Name | Contact |
+| --- | --- | --- |
+| Fork maintainer, build & macOS 27 verification | Vitalii Tereshchuk (xVoLAnD) | https://dotoca.net |
+
+Upstream project: [dwarvesf/hidden](https://github.com/dwarvesf/hidden) © Dwarves Foundation. The macOS 27 Golden Gate hide-mechanism fix originates from upstream [PR #396](https://github.com/dwarvesf/hidden/pull/396) by Skyler (skuthus); this fork packages, builds, and verifies it for macOS 27.
+
 ## Hidden Bar
 Hidden Bar lets you hide menu bar items to give your Mac a cleaner look.
 
