@@ -10,13 +10,6 @@
 	<a href="https://github.com/xvoland/hidden/releases/latest">
  		<img src="https://img.shields.io/badge/download-latest-brightgreen.svg" alt="download">
   </a>
-
-	<a href="https://img.shields.io/badge/platform-macOS-lightgrey.svg">
- 		<img src="https://img.shields.io/badge/platform-macOS-lightgrey.svg" alt="platform">
-	</a>
-	<a href="https://img.shields.io/badge/requirements-macOS Ventura+-ff69b4.svg">
- 		<img src="https://img.shields.io/badge/requirements-macOS Ventura+-ff69b4.svg" alt="systemrequirements">
-	</a>
 </p>
 
 > **Fork note.** This fork adds **macOS 27 Golden Gate** menu-bar hiding support and is maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net. The underlying fix is [PR #396](https://github.com/dwarvesf/hidden/pull/396) (upstream) by Skyler (skuthus); this fork builds, verifies, and ships it for macOS 27. macOS 27 support contributed by Vitalii Tereshchuk.
