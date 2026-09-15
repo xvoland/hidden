@@ -104,11 +104,11 @@ class StatusBarController {
     // it. macOS overflows from the left, so the icons go first and the spacers
     // stay; surplus spacers overflow themselves, which is harmless. The count
     // is fixed so every launch registers the same names: a name first seen on a
-    // later launch would land leftmost, outside the block. Seven units cover a
-    // 5800pt display next to an 1800pt one.
+    // later launch would land leftmost, outside the block. Eleven units cover a
+    // ~14900pt display next to an 1800pt one (10 spacers + separator).
     private static func makeSpacers() -> [NSStatusItem] {
         guard #available(macOS 27.0, *) else { return [] }
-        return (0..<6).map { index in
+        return (0..<10).map { index in
             let item = makeItem("hiddenbar_spacer\(index)", length: 0)
             item.button?.isEnabled = false
             item.isVisible = false
@@ -121,7 +121,7 @@ class StatusBarController {
     // so the always-hidden zone gets its own spacer block (#4).
     private static func makeAlwaysHiddenSpacers() -> [NSStatusItem] {
         guard #available(macOS 27.0, *) else { return [] }
-        return (0..<6).map { index in
+        return (0..<10).map { index in
             let item = makeItem("hiddenbar_ahspacer\(index)", length: 0)
             item.button?.isEnabled = false
             item.isVisible = false
