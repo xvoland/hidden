@@ -1,0 +1,26 @@
+name: Build Hidden Bar (.app)
+
+on:
+  push:
+    branches: [bugfix/macos27-menu-bar]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build (ad-hoc, no signing)
+        run: >
+          xcodebuild -project 'Hidden Bar.xcodeproj'
+          -scheme 'Hidden Bar'
+          -configuration Release
+          CODE_SIGNING_ALLOWED=NO
+          -derivedDataPath build
+
+      - name: Upload Hidden Bar.app
+        uses: actions/upload-artifact@v4
+        with:
+          name: Hidden Bar.app
+          path: build/Build/Products/Release/Hidden Bar.app
