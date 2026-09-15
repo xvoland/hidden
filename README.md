@@ -54,7 +54,13 @@ The official cask installs the upstream Dwarves Foundation release (without the 
 brew install --cask hiddenbar
 ```
 
-This fork's macOS 27 build is **not** on the official cask. Install it from the [GitHub Releases](https://github.com/xvoland/hidden/releases) page (unsigned — run `xattr -dr com.apple.quarantine "Hidden Bar.app"` after unzipping). If you self-host the build in your own tap, point a custom cask at the release asset.
+This fork's macOS 27 build is **not** on the official cask. Download it from the [GitHub Releases](https://github.com/xvoland/hidden/releases) page and unzip into `/Applications`. The build is **unsigned**, so before the first launch run:
+
+```
+xattr -dr com.apple.quarantine /Applications/Hidden\ Bar.app
+```
+
+(If you unzipped elsewhere, adjust the path.) If you self-host the build in your own tap, point a custom cask at the release asset.
 
 #### Manual download
 

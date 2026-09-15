@@ -70,6 +70,7 @@ To undo any of them: `defaults delete com.dwarvesv.minimalbar <key>`.
 | Nothing hides on macOS 27 after upgrading Hidden Bar | ⌘-drag icons to the right of the separator once. macOS 27 uses new item names so positions reset like a fresh install |
 | Hidden icons on macOS 27 appear under the system `«` chevron while collapsed | Expected: macOS 27's native overflow is where displaced icons go. Click Hidden Bar's arrow to bring them back onto the bar |
 | A new or just-updated app's icon shows up already hidden | Expected, see "Why new icons start hidden" below; ⌘-drag it to the right of the separator once |
+| App won't open: "damaged" or "unidentified developer" | The fork build is **unsigned**. Remove the quarantine flag before first launch: `xattr -dr com.apple.quarantine /Applications/Hidden\ Bar.app`, then open it |
 
 ### Why new icons start hidden
 
