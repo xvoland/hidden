@@ -1,8 +1,9 @@
-name: Build Hidden Bar (.app)
+name: Build & Release Hidden Bar (.app)
 
 on:
   push:
-    branches: [bugfix/macos27-menu-bar]
+    branches: [develop]
+    tags: ['v*']
   workflow_dispatch:
 
 jobs:
@@ -19,8 +20,21 @@ jobs:
           CODE_SIGNING_ALLOWED=NO
           -derivedDataPath build
 
-      - name: Upload Hidden Bar.app
+      # Keep the .app bundle intact (the previous upload flattened it to Contents/).
+      - name: Package app
+        run: ditto -c -k --sequesterRsrc --keepParent "build/Build/Products/Release/Hidden Bar.app" "Hidden Bar.app.zip"
+
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: Hidden Bar.app
-          path: build/Build/Products/Release/Hidden Bar.app
+          path: Hidden Bar.app.zip
+
+      # Auto-publish a release only when a version tag is pushed.
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Hidden Bar.app.zip
+          prerelease: true
+          generate_release_notes: true

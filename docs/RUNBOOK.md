@@ -25,9 +25,13 @@ menu bar. Two building blocks make that scriptable:
 
 1. **Truth signal**: the separator's AX size.
    `osascript -e 'tell application "System Events" to tell process "Hidden Bar" to get size of menu bar item 2 of menu bar 2'`
-   reads ~20pt expanded vs the collapse length (pre-27: ~2x-screen-width;
-   macOS 27: just under half the narrowest screen, with extra spacer items).
-   Item 1 is the arrow.
+   reads ~20pt expanded vs the collapse length. On macOS 26 and earlier that is
+   ~2x the widest screen width; on macOS 27 Golden Gate it is `collapseUnit` =
+   `floor(narrowestScreen/2 - 64)` (the half-width cliff macOS 27 drops items
+   at), backed by 6 hidden spacer items (`hiddenbar_spacer0..5`) so the total
+   span covers wide/mixed-width displays. Displaced icons land in the system `«`
+   overflow, not off-screen. The always-hidden section has its own spacer block
+   (`hiddenbar_ahspacer0..5`) for the same reason (#4). Item 1 is the arrow.
 2. **Real clicks, not AXPress**: `AXPress` on the arrow is a no-op because the
    action handler reads `NSApp.currentEvent` (nil under assistive synthesis;
    known accessibility defect). Post real `CGEvent` mouse clicks at the arrow's

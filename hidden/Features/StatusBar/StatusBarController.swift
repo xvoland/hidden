@@ -22,6 +22,9 @@ class StatusBarController {
     private let spacers: [NSStatusItem] = StatusBarController.makeSpacers()  // macOS 27 only, empty elsewhere
     private let btnSeparate = StatusBarController.makeItem("hiddenbar_separate", length: 1)
     private var btnAlwaysHidden:NSStatusItem? = nil
+    // macOS 27 only: spacer block for the always-hidden section, mirroring the
+    // main separators so a single inflated unit can't span wide displays (#4).
+    private var alwaysHiddenSpacers: [NSStatusItem] = []
     
     private var btnHiddenLength: CGFloat = 20
     private var btnHiddenCollapseLength: CGFloat = 2000
@@ -113,6 +116,19 @@ class StatusBarController {
         }
     }
 
+    // Same idea as makeSpacers, but for the always-hidden section: a single
+    // inflated item can't span a wide display on macOS 27 (half-width cliff),
+    // so the always-hidden zone gets its own spacer block (#4).
+    private static func makeAlwaysHiddenSpacers() -> [NSStatusItem] {
+        guard #available(macOS 27.0, *) else { return [] }
+        return (0..<6).map { index in
+            let item = makeItem("hiddenbar_ahspacer\(index)", length: 0)
+            item.button?.isEnabled = false
+            item.isVisible = false
+            return item
+        }
+    }
+
     // Spacers are visible only while collapsed. isVisible keeps the item's slot
     // in the layout table, so they come back between the arrow and the
     // separator and take no room in the expanded bar.
@@ -153,6 +169,7 @@ class StatusBarController {
     init() {
         updateCollapsedLengths()
         setupUI()
+        performLayoutMigrationIfNeeded()
         restoreRemovedStatusItems()
         setupAlwayHideStatusBar()
         setupHoverToExpandIfEnabled()
@@ -207,6 +224,7 @@ class StatusBarController {
             setSpacersInflated(true)
             if Preferences.areSeparatorsHidden {
                 btnAlwaysHidden?.length = btnAlwaysHiddenEnableExpandCollapseLength
+                setAlwaysHiddenSpacersInflated(true)
             }
         }
     }
@@ -238,6 +256,24 @@ class StatusBarController {
         // the app's only UI, so they self-restore at launch.
         btnExpandCollapse.isVisible = true
         btnSeparate.isVisible = true
+    }
+
+    // #5: On the first launch under the macOS 27 autosave names, drop any saved
+    // bar positions so Hidden Bar's own items register in declaration order
+    // (arrow, spacers, separator, always-hidden). This avoids a manual re-drag of
+    // the app's own controls after upgrading from a pre-27 build. Note: other
+    // apps' icons may still need a one-time drag — macOS won't let one app
+    // reposition another's menu-bar items.
+    private func performLayoutMigrationIfNeeded() {
+        let key = "v27LayoutMigrated"
+        guard #available(macOS 27.0, *),
+              !UserDefaults.standard.bool(forKey: key) else { return }
+        for item in [btnExpandCollapse] + spacers + [btnSeparate] {
+            let name = item.autosaveName
+            item.autosaveName = nil
+            item.autosaveName = name
+        }
+        UserDefaults.standard.set(true, forKey: key)
     }
 
     private func setupUI() {
@@ -295,6 +331,7 @@ class StatusBarController {
             self.btnSeparate.length = self.btnHiddenLength
         }
         self.btnAlwaysHidden?.length = self.btnAlwaysHiddenLength
+        self.setAlwaysHiddenSpacersInflated(false)
     }
     
     private func hideSeparators() {
@@ -306,6 +343,7 @@ class StatusBarController {
             self.btnSeparate.length = self.btnHiddenLength
         }
         self.btnAlwaysHidden?.length = self.btnAlwaysHiddenEnableExpandCollapseLength
+        self.setAlwaysHiddenSpacersInflated(true)
     }
     
     func expandCollapseIfNeeded() {
@@ -460,11 +498,27 @@ extension StatusBarController {
             }
             self.btnAlwaysHidden?.autosaveName = "hiddenbar_terminate" + StatusBarController.autosaveSuffix
             self.btnAlwaysHidden?.isVisible = true
+
+            // macOS 27: give the always-hidden section its own spacer block so a
+            // single inflated item can't span wide displays (#4).
+            self.alwaysHiddenSpacers = StatusBarController.makeAlwaysHiddenSpacers()
+            self.setAlwaysHiddenSpacersInflated(Preferences.areSeparatorsHidden)
         } else {
             if let existing = self.btnAlwaysHidden {
                 NSStatusBar.system.removeStatusItem(existing)
             }
             self.btnAlwaysHidden = nil
+            for spacer in alwaysHiddenSpacers { NSStatusBar.system.removeStatusItem(spacer) }
+            self.alwaysHiddenSpacers = []
+        }
+    }
+
+    // Mirror setSpacersInflated for the always-hidden section's spacer block (#4).
+    private func setAlwaysHiddenSpacersInflated(_ inflated: Bool) {
+        guard btnAlwaysHidden != nil else { return }
+        for spacer in alwaysHiddenSpacers {
+            spacer.isVisible = inflated
+            spacer.length = inflated ? btnAlwaysHiddenEnableExpandCollapseLength : 0
         }
     }
 }
