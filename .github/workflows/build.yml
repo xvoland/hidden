@@ -2,7 +2,7 @@ name: Build & Release Hidden Bar (.app)
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, master]
     tags: ['v*']
   workflow_dispatch:
 
