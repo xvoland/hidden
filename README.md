@@ -1,3 +1,5 @@
+> **⚠️ Unofficial build.** This is a community fork of [Hidden Bar](https://github.com/dwarvesf/hidden) maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net, with added support for **macOS 27 Golden Gate**. It is **not** the official Dwarves Foundation release. The macOS 27 hide-mechanism fix originates from upstream [PR #396](https://github.com/dwarvesf/hidden/pull/396) by Skyler (skuthus). Download the fork build from the [Releases](https://github.com/xvoland/hidden/releases) page.
+
 <p align="center">
 	<img width="200" height="200" margin-right="100%" src="https://github.com/dwarvesf/hidden/blob/develop/img/icon_512%402x.png?raw=true">
 </p>
@@ -46,9 +48,13 @@ The Hidden Bar is notarized before distributed out side App Store. It's safe to 
 
 #### Using Homebrew
 
+The official cask installs the upstream Dwarves Foundation release (without the macOS 27 fork changes):
+
 ```
 brew install --cask hiddenbar
 ```
+
+This fork's macOS 27 build is **not** on the official cask. Install it from the [GitHub Releases](https://github.com/xvoland/hidden/releases) page (unsigned — run `xattr -dr com.apple.quarantine "Hidden Bar.app"` after unzipping). If you self-host the build in your own tap, point a custom cask at the release asset.
 
 #### Manual download
 
