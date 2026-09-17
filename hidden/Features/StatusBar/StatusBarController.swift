@@ -370,7 +370,10 @@ class StatusBarController {
             return
         }
         
-        if Preferences.lastCollapsedState {
+        // On launch, always start EXPANDED. Restore collapsed state only if
+        // auto-hide is enabled (user expects auto-collapse behavior).
+        // This prevents collapsing while other apps are still registering items.
+        if Preferences.isAutoHide && Preferences.lastCollapsedState {
             collapseMenuBar()
         } else {
             expandMenubar(isInitialRestore: true)
