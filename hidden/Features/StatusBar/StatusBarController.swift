@@ -174,11 +174,15 @@ class StatusBarController {
         setupAlwayHideStatusBar()
         setupHoverToExpandIfEnabled()
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenParametersChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.restoreCollapsedState()
+        
+        let isLikelyLoginLaunch = Self.isLikelyLoginLaunch()
+        let initialDelay = isLikelyLoginLaunch ? 3.0 : 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + initialDelay) { [weak self] in
+            self?.restoreCollapsedState(isLoginLaunch: isLikelyLoginLaunch)
         }
         
         if Preferences.areSeparatorsHidden {hideSeparators()}
+        Self.saveLaunchTimestamp()
     }
     
     deinit {
@@ -355,11 +359,15 @@ class StatusBarController {
         }
     }
     
-    private func restoreCollapsedState(attemptsLeft: Int = 10) {
+    private func restoreCollapsedState(isLoginLaunch: Bool = false, attempt: Int = 0) {
+        let maxAttempts = isLoginLaunch ? 60 : 10
+        let baseDelay: TimeInterval = isLoginLaunch ? 0.5 : 0.5
+        
         if !isBtnSeparateValidPosition {
-            if attemptsLeft > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                    self?.restoreCollapsedState(attemptsLeft: attemptsLeft - 1)
+            if attempt < maxAttempts {
+                let delay = min(baseDelay * pow(1.2, Double(attempt)), 2.0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                    self?.restoreCollapsedState(isLoginLaunch: isLoginLaunch, attempt: attempt + 1)
                 }
                 return
             }
@@ -378,6 +386,19 @@ class StatusBarController {
         } else {
             expandMenubar(isInitialRestore: true)
         }
+        autoCollapseIfNeeded()
+    }
+    
+    private static func isLikelyLoginLaunch() -> Bool {
+        let lastLaunch = UserDefaults.standard.double(forKey: "lastLaunchTimestamp")
+        let now = Date().timeIntervalSince1970
+        // If previous launch was less than 60 seconds ago, likely login/reboot
+        return now - lastLaunch < 60 && lastLaunch > 0
+    }
+    
+    private static func saveLaunchTimestamp() {
+        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "lastLaunchTimestamp")
+    }
         autoCollapseIfNeeded()
     }
 
