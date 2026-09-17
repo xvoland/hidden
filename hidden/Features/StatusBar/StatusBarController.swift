@@ -175,7 +175,7 @@ class StatusBarController {
         setupHoverToExpandIfEnabled()
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenParametersChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.collapseMenuBarOnLaunch(attemptsLeft: 10)
+            self?.restoreCollapsedState()
         }
         
         if Preferences.areSeparatorsHidden {hideSeparators()}
@@ -356,17 +356,18 @@ class StatusBarController {
         }
     }
     
-    // macOS 27's shared menu-bar window may not have item frames for a beat
-    // after launch, so the position guard would skip the first collapse.
-    // Retry a few times; if the items were cmd-dragged out of order the guard
-    // stays false and we stop, same as before.
-    private func collapseMenuBarOnLaunch(attemptsLeft: Int) {
-        if isBtnSeparateValidPosition || attemptsLeft <= 0 {
-            collapseMenuBar()
+    private func restoreCollapsedState(attemptsLeft: Int = 10) {
+        if !isBtnSeparateValidPosition && attemptsLeft > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.restoreCollapsedState(attemptsLeft: attemptsLeft - 1)
+            }
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.collapseMenuBarOnLaunch(attemptsLeft: attemptsLeft - 1)
+        
+        if Preferences.lastCollapsedState {
+            collapseMenuBar()
+        } else {
+            expandMenubar()
         }
     }
 
@@ -386,6 +387,7 @@ class StatusBarController {
             NSApp.setActivationPolicy(.accessory)
             NSApp.deactivate()
         }
+        Preferences.lastCollapsedState = true
     }
     private func expandMenubar() {
         guard self.isCollapsed else {return}
@@ -402,6 +404,7 @@ class StatusBarController {
             NSApp.activate(ignoringOtherApps: true)
             
         }
+        Preferences.lastCollapsedState = false
     }
     
     private func autoCollapseIfNeeded() {

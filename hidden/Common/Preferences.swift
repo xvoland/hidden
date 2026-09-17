@@ -97,11 +97,20 @@ enum Preferences {
     
     static var hoverToExpand: Bool {
         get {
-            UserDefaults.standard.bool(forKey: UserDefaults.Key.hoverToExpand)
+            return UserDefaults.standard.bool(forKey: UserDefaults.Key.hoverToExpand)
         }
 
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaults.Key.hoverToExpand)
+        }
+    }
+
+    static var lastCollapsedState: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "lastCollapsedState")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "lastCollapsedState")
         }
     }
 
