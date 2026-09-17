@@ -179,7 +179,6 @@ class StatusBarController {
         }
         
         if Preferences.areSeparatorsHidden {hideSeparators()}
-        autoCollapseIfNeeded()
     }
     
     deinit {
@@ -367,8 +366,9 @@ class StatusBarController {
         if Preferences.lastCollapsedState {
             collapseMenuBar()
         } else {
-            expandMenubar()
+            expandMenubar(isInitialRestore: true)
         }
+        autoCollapseIfNeeded()
     }
 
     private func collapseMenuBar() {
@@ -389,7 +389,7 @@ class StatusBarController {
         }
         Preferences.lastCollapsedState = true
     }
-    private func expandMenubar() {
+    private func expandMenubar(isInitialRestore: Bool = false) {
         guard self.isCollapsed else {return}
         btnSeparate.length = btnHiddenLength
         setSpacersInflated(false)
@@ -397,7 +397,9 @@ class StatusBarController {
         if let button = btnExpandCollapse.button {
             button.image = Assets.collapseImage
         }
-        autoCollapseIfNeeded()
+        if !isInitialRestore {
+            autoCollapseIfNeeded()
+        }
         
         if Preferences.useFullStatusBarOnExpandEnabled {
             NSApp.setActivationPolicy(.regular)
