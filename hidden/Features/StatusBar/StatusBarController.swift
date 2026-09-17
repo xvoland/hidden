@@ -356,10 +356,17 @@ class StatusBarController {
     }
     
     private func restoreCollapsedState(attemptsLeft: Int = 10) {
-        if !isBtnSeparateValidPosition && attemptsLeft > 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.restoreCollapsedState(attemptsLeft: attemptsLeft - 1)
+        if !isBtnSeparateValidPosition {
+            if attemptsLeft > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    self?.restoreCollapsedState(attemptsLeft: attemptsLeft - 1)
+                }
+                return
             }
+            // Position still invalid after all retries — macOS layout not ready.
+            // Default to EXPANDED (safe), don't force collapse which hides icons.
+            expandMenubar(isInitialRestore: true)
+            autoCollapseIfNeeded()
             return
         }
         
