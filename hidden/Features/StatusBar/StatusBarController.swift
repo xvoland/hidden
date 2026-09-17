@@ -399,9 +399,7 @@ class StatusBarController {
     private static func saveLaunchTimestamp() {
         UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "lastLaunchTimestamp")
     }
-        autoCollapseIfNeeded()
-    }
-
+    
     private func collapseMenuBar() {
         guard self.isBtnSeparateValidPosition && !self.isCollapsed else {
             autoCollapseIfNeeded()
