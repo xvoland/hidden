@@ -111,7 +111,12 @@ class StatusBarController {
         return (0..<10).map { index in
             let item = makeItem("hiddenbar_spacer\(index)", length: 0)
             item.button?.isEnabled = false
-            item.isVisible = false
+            // Always keep the slot registered in the layout table. A hidden
+            // (isVisible = false) item can lose its position when re-shown on
+            // macOS 27, so we hide by zero length instead and never toggle
+            // isVisible. This keeps the spacer block ordered between the arrow
+            // and the separator across collapses (fix for wide-display leak).
+            item.isVisible = true
             return item
         }
     }
@@ -124,17 +129,19 @@ class StatusBarController {
         return (0..<10).map { index in
             let item = makeItem("hiddenbar_ahspacer\(index)", length: 0)
             item.button?.isEnabled = false
-            item.isVisible = false
+            // Same slot-preserving trick as makeSpacers: never toggle isVisible,
+            // hide by zero length only.
+            item.isVisible = true
             return item
         }
     }
 
-    // Spacers are visible only while collapsed. isVisible keeps the item's slot
-    // in the layout table, so they come back between the arrow and the
-    // separator and take no room in the expanded bar.
+    // Spacers stay isVisible = true for their whole life (see makeSpacers); we
+    // only change length, so the layout-table slot is never lost or repositioned
+    // when collapsing. Setting length before toggling is invisible here, but the
+    // ordering is kept defensive in case visibility ever flips again.
     private func setSpacersInflated(_ inflated: Bool) {
         for spacer in spacers {
-            spacer.isVisible = inflated
             spacer.length = inflated ? btnHiddenCollapseLength : 0
         }
     }
@@ -538,10 +545,10 @@ extension StatusBarController {
     }
 
     // Mirror setSpacersInflated for the always-hidden section's spacer block (#4).
+    // Spacers stay visible (see makeAlwaysHiddenSpacers); only length changes.
     private func setAlwaysHiddenSpacersInflated(_ inflated: Bool) {
         guard btnAlwaysHidden != nil else { return }
         for spacer in alwaysHiddenSpacers {
-            spacer.isVisible = inflated
             spacer.length = inflated ? btnAlwaysHiddenEnableExpandCollapseLength : 0
         }
     }
