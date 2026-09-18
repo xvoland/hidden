@@ -153,7 +153,8 @@ class StatusBarController {
         guard UserDefaults.standard.bool(forKey: "debugLayout") else { return }
         let narrowest = NSScreen.screens.map { $0.frame.width }.min() ?? 0
         let widest = NSScreen.screens.map { $0.frame.width }.max() ?? 0
-        NSLog("[HiddenBar:layout] === \(tag) === narrowest=\(narrowest) widest=\(widest) collapseUnit=\(StatusBarController.collapseUnit) collapsed=\(isCollapsed)")
+        let unit: CGFloat = if #available(macOS 27.0, *) { StatusBarController.collapseUnit } else { btnHiddenCollapseLength }
+        NSLog("[HiddenBar:layout] === \(tag) === narrowest=\(narrowest) widest=\(widest) collapseUnit=\(unit) collapsed=\(isCollapsed)")
         let all: [(String, NSStatusItem)] = [("arrow", btnExpandCollapse), ("sep", btnSeparate)] + spacers.enumerated().map { ("sp\($0)", $1) } + [("ah", btnAlwaysHidden)].compactMap { pair in
             guard let item = pair.1 else { return nil }
             return (pair.0, item)
