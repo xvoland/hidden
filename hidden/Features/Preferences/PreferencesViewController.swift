@@ -63,6 +63,15 @@ class PreferencesViewController: NSViewController {
         loadHotkey()
         createTutorialView()
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: .prefsChanged, object: nil)
+        
+        // Lower imageViewTop slightly to avoid overlap with segment buttons
+        if let imageView = imageViewTop {
+            imageView.translatesAutoresizingMaskIntoConstraints = true
+            // Move image down by 12 points - adjust as needed
+            var frame = imageView.frame
+            frame.origin.y += 12
+            imageView.frame = frame
+        }
     }
 
     deinit {
