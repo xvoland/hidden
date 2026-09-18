@@ -176,7 +176,8 @@ class StatusBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenParametersChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         
         let isLikelyLoginLaunch = Self.isLikelyLoginLaunch()
-        let initialDelay = isLikelyLoginLaunch ? 90.0 : 1.0
+        // 15 second wait for ALL launches to let menu bar fully stabilize
+        let initialDelay: TimeInterval = 15.0
         DispatchQueue.main.asyncAfter(deadline: .now() + initialDelay) { [weak self] in
             self?.restoreCollapsedState(isLoginLaunch: isLikelyLoginLaunch)
         }
