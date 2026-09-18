@@ -154,14 +154,24 @@ class StatusBarController {
         let narrowest = NSScreen.screens.map { $0.frame.width }.min() ?? 0
         let widest = NSScreen.screens.map { $0.frame.width }.max() ?? 0
         let unit: CGFloat = if #available(macOS 27.0, *) { StatusBarController.collapseUnit } else { btnHiddenCollapseLength }
-        NSLog("[HiddenBar:layout] === \(tag) === narrowest=\(narrowest) widest=\(widest) collapseUnit=\(unit) collapsed=\(isCollapsed)")
+        var lines: [String] = []
+        lines.append("[HiddenBar:layout] === \(tag) === narrowest=\(narrowest) widest=\(widest) collapseUnit=\(unit) collapsed=\(isCollapsed)")
         let all: [(String, NSStatusItem)] = [("arrow", btnExpandCollapse), ("sep", btnSeparate)] + spacers.enumerated().map { ("sp\($0)", $1) } + [("ah", btnAlwaysHidden)].compactMap { pair in
             guard let item = pair.1 else { return nil }
             return (pair.0, item)
         } + alwaysHiddenSpacers.enumerated().map { ("ahsp\($0)", $1) }
         for (label, item) in all {
             let origin = item.button?.frame.origin ?? .zero
-            NSLog("[HiddenBar:layout] \(label) name=\(item.autosaveName ?? "-") visible=\(item.isVisible) length=\(item.length) originX=\(origin.x)")
+            lines.append("[HiddenBar:layout] \(label) name=\(item.autosaveName ?? "-") visible=\(item.isVisible) length=\(item.length) originX=\(origin.x)")
+        }
+        let text = lines.joined(separator: "\n")
+        NSLog("%@", text)
+        // Mirror to a file so the dump survives log-predicate filtering.
+        if let handle = FileHandle(forWritingAtPath: "/tmp/hiddenbar_layout.log") {
+            if let data = (text + "\n").data(using: .utf8) {
+                handle.seekToEndOfFile()
+                handle.write(data)
+            }
         }
     }
 
