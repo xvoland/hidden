@@ -176,7 +176,7 @@ class StatusBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenParametersChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         
         let isLikelyLoginLaunch = Self.isLikelyLoginLaunch()
-        let initialDelay = isLikelyLoginLaunch ? 3.0 : 1.0
+        let initialDelay = isLikelyLoginLaunch ? 90.0 : 1.0
         DispatchQueue.main.asyncAfter(deadline: .now() + initialDelay) { [weak self] in
             self?.restoreCollapsedState(isLoginLaunch: isLikelyLoginLaunch)
         }
@@ -359,20 +359,10 @@ class StatusBarController {
         }
     }
     
-    private func restoreCollapsedState(isLoginLaunch: Bool = false, attempt: Int = 0) {
-        let maxAttempts = isLoginLaunch ? 60 : 10
-        let baseDelay: TimeInterval = isLoginLaunch ? 0.5 : 0.5
-        
+    private func restoreCollapsedState(isLoginLaunch: Bool = false) {
+        // After long delay (90s for login), just check once.
+        // If position still invalid, default to EXPANDED (safe).
         if !isBtnSeparateValidPosition {
-            if attempt < maxAttempts {
-                let delay = min(baseDelay * pow(1.2, Double(attempt)), 2.0)
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-                    self?.restoreCollapsedState(isLoginLaunch: isLoginLaunch, attempt: attempt + 1)
-                }
-                return
-            }
-            // Position still invalid after all retries — macOS layout not ready.
-            // Default to EXPANDED (safe), don't force collapse which hides icons.
             expandMenubar(isInitialRestore: true)
             autoCollapseIfNeeded()
             return
@@ -380,7 +370,6 @@ class StatusBarController {
         
         // On launch, always start EXPANDED. Restore collapsed state only if
         // auto-hide is enabled (user expects auto-collapse behavior).
-        // This prevents collapsing while other apps are still registering items.
         if Preferences.isAutoHide && Preferences.lastCollapsedState {
             collapseMenuBar()
         } else {
