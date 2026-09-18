@@ -5,7 +5,7 @@
 </p>
 
 
-> **⚠️ Unofficial build.** This is a community fork of [Hidden Bar](https://github.com/dwarvesf/hidden) maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net, with added support for **macOS 27 Golden Gate**. It is **not** the official Dwarves Foundation release. The macOS 27 hide-mechanism fix originates from upstream [PR #396](https://github.com/dwarvesf/hidden/pull/396) by Skyler (skuthus). Download the fork build from the [Releases](https://github.com/xvoland/hidden/releases) page.
+> **⚠️ UNOFFICIAL BUILD.** This is a community fork of [Hidden Bar](https://github.com/dwarvesf/hidden) maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net, with added support for **macOS 27 Golden Gate**. It is **not** the official Dwarves Foundation release. The macOS 27 hide-mechanism fix originates from upstream [PR #396](https://github.com/dwarvesf/hidden/pull/396) by Skyler (skuthus). Download the fork build from the [Releases](https://github.com/xvoland/hidden/releases) page.
 
 <p align="center">
 	<img width="200" height="200" margin-right="100%" src="img/icon_512@2x.png">
@@ -18,8 +18,6 @@
  		<img src="https://img.shields.io/badge/download-latest-brightgreen.svg" alt="download">
   </a>
 </p>
-
-> **Fork note.** This fork adds **macOS 27 Golden Gate** menu-bar hiding support and is maintained by **Vitalii Tereshchuk (xVoLAnD)** — https://dotoca.net. The underlying fix is [PR #396](https://github.com/dwarvesf/hidden/pull/396) (upstream) by Skyler (skuthus); this fork builds, verifies, and ships it for macOS 27. macOS 27 support contributed by Vitalii Tereshchuk.
 
 ## Maintainer (this fork)
 
