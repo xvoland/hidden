@@ -83,12 +83,14 @@ class StatusBarController {
 
     // macOS 27 drops a status item whose length reaches half the display width
     // instead of clamping it (#360). Measured on 27.0: a 3008pt display keeps
-    // 1480pt and drops 1500pt. One length is applied on every display's bar, so
-    // the unit is sized under the NARROWEST display's cliff.
+    // 1480pt and drops 1500pt. One length is applied on every display's bar.
+    // collapseUnit is now calculated per-display in updateCollapsedLengths()
+    // using the main screen's width to prevent items from being dropped
+    // under the Notch on high-res single displays.
     @available(macOS 27.0, *)
     private static var collapseUnit: CGFloat {
-        let narrowest = NSScreen.screens.map { $0.frame.width }.min() ?? 1728
-        return max(200, (narrowest / 2 - 64).rounded(.down))
+        let mainWidth = NSScreen.main?.frame.width ?? 1728
+        return max(200, (mainWidth / 2 - 64).rounded(.down))
     }
 
     private static func makeItem(_ name: String, length: CGFloat) -> NSStatusItem {
@@ -243,9 +245,10 @@ class StatusBarController {
     private func updateCollapsedLengths() {
         let boundedCollapseLength: CGFloat
         if #available(macOS 27.0, *) {
-            // See collapseUnit and makeSpacers: one unit per item, spacers make
-            // up the rest of the span. Displaced icons go into the native
-            // overflow menu rather than off-screen.
+            // Use collapseUnit which now calculates based on main screen width
+            // to prevent items from being dropped under the Notch on high-res displays.
+            // Previously used narrowest screen width which could cause items to exceed
+            // half the display width on high-res single display setups.
             boundedCollapseLength = StatusBarController.collapseUnit
         } else {
             // The menubar replicates across every attached display, so the collapse
