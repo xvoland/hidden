@@ -32,6 +32,10 @@ class PreferencesWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
+        // Modern: transparent title bar with hidden buttons
+        self.window?.titlebarAppearsTransparent = true
+        self.window?.titleVisibility = .hidden
+        self.window?.collectionBehavior = []
         updateVC()
     }
     

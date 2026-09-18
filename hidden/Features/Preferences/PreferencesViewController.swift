@@ -23,6 +23,8 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var arrowPointToAlwayHiddenImage: NSImageView!
     @IBOutlet weak var lblAlwayHidden: NSTextField!
     
+    @IBOutlet weak var generalStackView: NSStackView!
+    @IBOutlet weak var appearanceSection: NSStackView!
     
     
     @IBOutlet weak var checkBoxAutoHide: NSButton!
@@ -45,6 +47,13 @@ class PreferencesViewController: NSViewController {
                 self?.btnShortcut.highlight(isHighlight)
             }
         }
+    }
+    
+    // MARK: - UI Setup
+    
+    private func setupModernLayout() {
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
     }
     
     //MARK: - VC Life cycle
@@ -162,6 +171,9 @@ class PreferencesViewController: NSViewController {
         checkBoxShowPreferences.state = Preferences.isShowPreference ? .on : .off
         checkBoxShowAlwaysHiddenSection.state = Preferences.alwaysHiddenSectionEnabled ? .on : .off
         timePopup.selectItem(at: SelectedSecond.secondToPossition(seconds: Preferences.numberOfSecondForAutoHide))
+        
+        // Visual feedback: highlight changed items
+        view.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
     }
     
     private func loadHotkey() {
@@ -290,31 +302,53 @@ extension PreferencesViewController {
     }
     
     private func showHowToUseAlwayHiddenPopover(sender: NSButton) {
-        let controller = NSViewController()
-        let label = NSTextField()
-        let text = NSLocalizedString("Tutorial text", comment: "Step by step tutorial")
-        
-        label.stringValue = text
-        label.isBezeled = false
-        label.isEditable = false
-        let view = NSView()
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        label.translatesAutoresizingMaskIntoConstraints = false
-        controller.view = view
-        
         let popover = NSPopover()
-        popover.contentViewController = controller
-        popover.contentSize = controller.view.frame.size
-        
         popover.behavior = .transient
         popover.animates = true
         
-        popover.show(relativeTo: self.view.bounds, of: sender , preferredEdge: NSRectEdge.maxX)
+        // Create a modern tutorial view
+        let tutorialView = NSView(frame: NSRect(x: 0, y: 0, width: 300, height: 150))
+        tutorialView.wantsLayer = true
+        tutorialView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        tutorialView.layer?.cornerRadius = 10
+        tutorialView.layer?.masksToBounds = true
+        
+        let label = NSTextField(labelWithString: NSLocalizedString("Tutorial text", comment: "Step by step tutorial"))
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = NSColor.labelColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let maintainerText = NSAttributedString(string: "Maintained by Vitalii Tereshchuk (xVoLAnD)",
+                                                attributes: [.font: NSFont.systemFont(ofSize: 11),
+                                                             .foregroundColor: NSColor.secondaryLabelColor])
+        
+        let linkButton = NSButton(title: "https://dotoca.net", target: self, action: #selector(openMaintainerSite))
+        linkButton.attributedTitle = maintainerText
+        linkButton.isBordered = false
+        linkButton.isEnabled = true
+        linkButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        tutorialView.addSubview(label)
+        tutorialView.addSubview(linkButton)
+        
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: tutorialView.topAnchor, constant: 16),
+            label.leadingAnchor.constraint(equalTo: tutorialView.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(lessThanOrEqualTo: tutorialView.trailingAnchor, constant: -16),
+            
+            linkButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
+            linkButton.leadingAnchor.constraint(equalTo: tutorialView.leadingAnchor, constant: 16),
+            linkButton.bottomAnchor.constraint(equalTo: tutorialView.bottomAnchor, constant: -16),
+        ])
+        
+        popover.contentViewController = NSViewController()
+        popover.contentViewController?.view = tutorialView
+        popover.contentSize = tutorialView.frame.size
+        
+        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: NSRectEdge.maxX)
+    }
+    
+    @objc private func openMaintainerSite() {
+        NSWorkspace.shared.open(URL(string: "https://dotoca.net")!)
     }
 }
