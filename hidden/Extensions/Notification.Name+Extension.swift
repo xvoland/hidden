@@ -3,6 +3,7 @@
 //  Hidden Bar
 //
 //  Created by Peter Luo on 2020/6/26.
+//  Changed by Vitalii Tereshchuk / xVoLAnD, 2026
 //  Copyright © 2020 Dwarves Foundation. All rights reserved.
 //
 
