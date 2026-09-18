@@ -146,6 +146,24 @@ class StatusBarController {
         }
     }
 
+    // Debug layout dump (enable: defaults write com.dwarvesv.minimalbar debugLayout -bool true).
+    // Prints every status item we own: autosaveName, isVisible, length, and the live button
+    // origin. This surfaces mis-ordered / non-inflating spacers on wide displays.
+    private func dumpLayout(_ tag: String = "") {
+        guard UserDefaults.standard.bool(forKey: "debugLayout") else { return }
+        let narrowest = NSScreen.screens.map { $0.frame.width }.min() ?? 0
+        let widest = NSScreen.screens.map { $0.frame.width }.max() ?? 0
+        NSLog("[HiddenBar:layout] === \(tag) === narrowest=\(narrowest) widest=\(widest) collapseUnit=\(StatusBarController.collapseUnit) collapsed=\(isCollapsed)")
+        let all: [(String, NSStatusItem)] = [("arrow", btnExpandCollapse), ("sep", btnSeparate)] + spacers.enumerated().map { ("sp\($0)", $1) } + [("ah", btnAlwaysHidden)].compactMap { pair in
+            guard let item = pair.1 else { return nil }
+            return (pair.0, item)
+        } + alwaysHiddenSpacers.enumerated().map { ("ahsp\($0)", $1) }
+        for (label, item) in all {
+            let origin = item.button?.frame.origin ?? .zero
+            NSLog("[HiddenBar:layout] \(label) name=\(item.autosaveName ?? "-") visible=\(item.isVisible) length=\(item.length) originX=\(origin.x)")
+        }
+    }
+
     private var hoverMonitor: Any?
     private var hoverDwellTimer: Timer?
 
@@ -237,6 +255,7 @@ class StatusBarController {
                 btnAlwaysHidden?.length = btnAlwaysHiddenEnableExpandCollapseLength
                 setAlwaysHiddenSpacersInflated(true)
             }
+            dumpLayout("hotplug-stay-collapsed")
         }
     }
 
@@ -405,6 +424,7 @@ class StatusBarController {
 
         btnSeparate.length = self.btnHiddenCollapseLength
         setSpacersInflated(true)
+        dumpLayout("collapse")
         setSeparatorGlyphVisible(false)
         if let button = btnExpandCollapse.button {
             button.image = Assets.expandImage
@@ -419,6 +439,7 @@ class StatusBarController {
         guard self.isCollapsed else {return}
         btnSeparate.length = btnHiddenLength
         setSpacersInflated(false)
+        dumpLayout("expand")
         setSeparatorGlyphVisible(true)
         if let button = btnExpandCollapse.button {
             button.image = Assets.collapseImage
