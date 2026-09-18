@@ -393,6 +393,7 @@ class StatusBarController {
         if !isBtnSeparateValidPosition {
             expandMenubar(isInitialRestore: true)
             autoCollapseIfNeeded()
+            dumpLayout("launch")
             return
         }
         
@@ -404,6 +405,7 @@ class StatusBarController {
             expandMenubar(isInitialRestore: true)
         }
         autoCollapseIfNeeded()
+        dumpLayout("launch")
     }
     
     private static func isLikelyLoginLaunch() -> Bool {
