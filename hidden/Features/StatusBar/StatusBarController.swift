@@ -87,8 +87,14 @@ class StatusBarController {
     // the unit is sized under the NARROWEST display's cliff.
     @available(macOS 27.0, *)
     private static var collapseUnit: CGFloat {
+        // Use the main screen's width for collapse calculation so that the
+        // unit size adapts to the display where the menubar resides.
+        // Fall back to the narrowest display width for safety on setups where
+        // mainScreen is unavailable or on very narrow displays.
+        let mainWidth = NSScreen.main?.frame.width ?? 0
         let narrowest = NSScreen.screens.map { $0.frame.width }.min() ?? 1728
-        return max(200, (narrowest / 2 - 64).rounded(.down))
+        let effectiveWidth = max(mainWidth, narrowest)
+        return max(200, (effectiveWidth / 2 - 64).rounded(.down))
     }
 
     private static func makeItem(_ name: String, length: CGFloat) -> NSStatusItem {
