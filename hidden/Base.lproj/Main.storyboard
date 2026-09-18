@@ -78,20 +78,6 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
                         <toolbar key="toolbar" implicitIdentifier="47B2E2C2-82B2-4C57-9EBF-6C8AE0786C9B" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="labelOnly" sizeMode="regular" id="iQ4-lw-FIM">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="F4y-kl-D2f"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="f59-7u-RLJ"/>
-                                <toolbarItem implicitItemIdentifier="0B8CB0BB-7947-4D4F-8C91-449CFFCEC98B" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="ML6-W4-U8X">
-                                    <nil key="toolTip"/>
-                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="3wq-bO-RJi">
-                                        <rect key="frame" x="10" y="14" width="56" height="16"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="General" id="zAf-vj-OOZ">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="ujw-Ab-7oS"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="SEF-Az-T9w"/>
                                 <toolbarItem implicitItemIdentifier="F7DA19CF-BC58-47E1-8140-D04939EE4CA7" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="NIO-JJ-pjq">
