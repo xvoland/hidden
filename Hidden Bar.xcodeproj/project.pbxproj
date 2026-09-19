@@ -387,14 +387,14 @@
 				08C20FE223AB452C0035D978 /* AboutViewController.swift in Sources */,
 				00137CDF24A63DB1004AC855 /* Notification.Name+Extension.swift in Sources */,
 				08A5F86423AA09F300981CA5 /* UserDefault+Extension.swift in Sources */,
-				AA1E0006240F0A1100B0C3D7 /* MenuBarLayout.swift in Sources */,
-				AA1E0007240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift in Sources */,
-				AA1E0000240F0A1100B0C3D1 /* MenuBarEngine.swift in Sources */,
-				AA1E0001240F0A1100B0C3D2 /* LegacyLengthEngine.swift in Sources */,
-				AA1E0002240F0A1100B0C3D3 /* MenuBarEngineFactory.swift in Sources */,
-				AA1E0003240F0A1100B0C3D4 /* NativeVisibilityEngine.swift in Sources */,
-				AA1E0004240F0A1100B0C3D5 /* NativeVisibilityBridge.swift in Sources */,
-				AA1E0005240F0A1100B0C3D6 /* HBNativeVisibilityShim.m in Sources */,
+				AA1E0007240F0A1100B0C3D7 /* MenuBarLayout.swift in Sources */,
+				AA1E0008240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift in Sources */,
+				AA1E0001240F0A1100B0C3D1 /* MenuBarEngine.swift in Sources */,
+				AA1E0002240F0A1100B0C3D2 /* LegacyLengthEngine.swift in Sources */,
+				AA1E0003240F0A1100B0C3D3 /* MenuBarEngineFactory.swift in Sources */,
+				AA1E0004240F0A1100B0C3D4 /* NativeVisibilityEngine.swift in Sources */,
+				AA1E0005240F0A1100B0C3D5 /* NativeVisibilityBridge.swift in Sources */,
+				AA1E0006240F0A1100B0C3D6 /* HBNativeVisibilityShim.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
