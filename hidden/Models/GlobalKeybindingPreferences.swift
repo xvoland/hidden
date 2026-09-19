@@ -95,9 +95,3 @@ struct GlobalKeybindPreferences: Codable, CustomStringConvertible {
         return "\(stringBuilder)"
     }
 }
-
-extension GlobalKeybindPreferences {
-    func save() {
-        
-    }
-}

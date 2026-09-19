@@ -17,8 +17,13 @@ enum Preferences {
         }
         
         set {
-            guard let data = try? JSONEncoder().encode(newValue) else { return }
-            UserDefaults.standard.set(data, forKey: UserDefaults.Key.globalKey)
+            if let data = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(data, forKey: UserDefaults.Key.globalKey)
+            } else if newValue == nil {
+                // encode(nil) comes back empty; without this the key survives in
+                // defaults and the "cleared" shortcut is back after relaunch.
+                UserDefaults.standard.removeObject(forKey: UserDefaults.Key.globalKey)
+            }
             
             NotificationCenter.default.post(Notification(name: .prefsChanged))
         }

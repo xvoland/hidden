@@ -197,9 +197,37 @@ class StatusBarController: MenuBarItemProvider {
     func expandCollapseIfNeeded() {
         if isToggle {return}
         isToggle = true
-        self.isCollapsed ? self.expandMenubar() : self.collapseMenuBar()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.isToggle = false
+
+        // Collapse can be asynchronous on macOS 27 (the native engine calibrates
+        // against Accessibility before hiding). A second click during that window
+        // must not be treated as a separate toggle, so keep the gate held until
+        // the engine leaves .calibrating (with a hard ceiling so it can never
+        // wedge the arrow). Expand is synchronous, so it releases immediately.
+        let collapseStarted = !self.isCollapsed
+        let action: () -> Void = collapseStarted ? { [weak self] in self?.collapseMenuBar() } : { [weak self] in self?.expandMenubar() }
+        let release: () -> Void = { [weak self] in
+            guard let self = self else { return }
+            self.isToggle = false
+        }
+        if collapseStarted {
+            let pollInterval: TimeInterval = 0.03
+            let timeout: TimeInterval = 3.0
+            var elapsed: TimeInterval = 0
+            Timer.scheduledTimer(withTimeInterval: pollInterval, repeats: true) { [weak self] timer in
+                guard let self = self else {
+                    timer.invalidate()
+                    return
+                }
+                elapsed += pollInterval
+                if self.menuBarEngine.state != .calibrating || elapsed >= timeout {
+                    timer.invalidate()
+                    release()
+                }
+            }
+        }
+        action()
+        if !collapseStarted {
+            release()
         }
     }
 
