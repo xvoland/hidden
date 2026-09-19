@@ -222,7 +222,6 @@
 		929113E821F9D04100173149 = {
 			isa = PBXGroup;
 			children = (
-				9220587D22127050008A8B03 /* Hidden.entitlements */,
 				929113F321F9D04100173149 /* hidden */,
 				929113F221F9D04100173149 /* Products */,
 				92C5057D21FEC24C0084719A /* Frameworks */,
