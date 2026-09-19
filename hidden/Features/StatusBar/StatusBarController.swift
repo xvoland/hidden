@@ -78,7 +78,6 @@ class StatusBarController: MenuBarItemProvider {
     //MARK: - Methods
     init() {
         setupUI()
-        restoreRemovedStatusItems()
         setupAlwayHideStatusBar()
         setupHoverToExpandIfEnabled()
         NotificationCenter.default.addObserver(self, selector: #selector(handleScreenParametersChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
