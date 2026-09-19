@@ -52,11 +52,6 @@ class PreferencesViewController: NSViewController {
     
     // MARK: - UI Setup
     
-    private func setupModernLayout() {
-        view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
-    }
-    
     //MARK: - VC Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -28,7 +28,6 @@
 		92C5057F21FEC24C0084719A /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C5057E21FEC24C0084719A /* ServiceManagement.framework */; };
 		92C5058121FEC2590084719A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C5058021FEC2590084719A /* Cocoa.framework */; };
 		92C97B88220032ED0007559C /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B87220032ED0007559C /* Util.swift */; };
-		92C97B8B220049D20007559C /* NSBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B8A220049D10007559C /* NSBarButtonItem+Extension.swift */; };
 		92C97B8D220058740007559C /* NSView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B8C220058740007559C /* NSView+Extension.swift */; };
 		92C97B8F220147FE0007559C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B8E220147FE0007559C /* Constant.swift */; };
 		92C97B9122018C1F0007559C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B9022018C1F0007559C /* StatusBarController.swift */; };
@@ -76,7 +75,6 @@
 		92C5057E21FEC24C0084719A /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		92C5058021FEC2590084719A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		92C97B87220032ED0007559C /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		92C97B8A220049D10007559C /* NSBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		92C97B8C220058740007559C /* NSView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extension.swift"; sourceTree = "<group>"; };
 		92C97B8E220147FE0007559C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		92C97B9022018C1F0007559C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 		92C97B89220049B30007559C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92C97B8A220049D10007559C /* NSBarButtonItem+Extension.swift */,
 				92C97B8C220058740007559C /* NSView+Extension.swift */,
 				08C20FDD23AABDD10035D978 /* HyperlinkTextField.swift */,
 			);
@@ -380,7 +377,6 @@
 				00117C4426600671005E517C /* Assets.swift in Sources */,
 				08A5F85A23AA007A00981CA5 /* PreferencesViewController.swift in Sources */,
 				3CF14C82221FA49D0083D42B /* PreferencesWindowController.swift in Sources */,
-				92C97B8B220049D20007559C /* NSBarButtonItem+Extension.swift in Sources */,
 				92C97B8D220058740007559C /* NSView+Extension.swift in Sources */,
 				0842CDFB23A9FDD000D14BD4 /* GlobalKeybindingPreferences.swift in Sources */,
 				55F3F11D2608925A0054B881 /* StackView+Extension.swift in Sources */,

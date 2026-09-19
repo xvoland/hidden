@@ -33,7 +33,7 @@ protocol MenuBarEngine: AnyObject {
     func invalidateLayout()
 }
 
-enum MenuBarEngineState {
+enum MenuBarEngineState: Equatable {
     case expanded
     case calibrating
     case collapsed
