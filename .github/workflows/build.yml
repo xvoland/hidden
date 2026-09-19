@@ -26,6 +26,14 @@ jobs:
           CODE_SIGNING_ALLOWED=NO
           -derivedDataPath build
 
+      - name: Build direct (native visibility, no signing)
+        run: >
+          xcodebuild -project 'Hidden Bar.xcodeproj'
+          -scheme 'Hidden Bar'
+          -configuration Release-Direct
+          CODE_SIGNING_ALLOWED=NO
+          -derivedDataPath build-direct
+
       # Keep the .app bundle intact (the previous upload flattened it to Contents/).
       - name: Package app
         run: ditto -c -k --sequesterRsrc --keepParent "build/Build/Products/Release/Hidden Bar.app" "Hidden Bar.app.zip"

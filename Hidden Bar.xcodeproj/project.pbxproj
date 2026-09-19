@@ -34,6 +34,14 @@
 		92C97B9122018C1F0007559C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97B9022018C1F0007559C /* StatusBarController.swift */; };
 		967F4B2524169BC800F18D3C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F4B2424169BC800F18D3C /* String+Extension.swift */; };
 		967F4B2824169CAF00F18D3C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967F4B2A24169CAF00F18D3C /* Localizable.strings */; };
+		AA1E0001240F0A1100B0C3D1 /* MenuBarEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0000240F0A1100B0C3D1 /* MenuBarEngine.swift */; };
+		AA1E0002240F0A1100B0C3D2 /* LegacyLengthEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0001240F0A1100B0C3D2 /* LegacyLengthEngine.swift */; };
+		AA1E0003240F0A1100B0C3D3 /* MenuBarEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0002240F0A1100B0C3D3 /* MenuBarEngineFactory.swift */; };
+		AA1E0004240F0A1100B0C3D4 /* NativeVisibilityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0003240F0A1100B0C3D4 /* NativeVisibilityEngine.swift */; };
+		AA1E0005240F0A1100B0C3D5 /* NativeVisibilityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0004240F0A1100B0C3D5 /* NativeVisibilityBridge.swift */; };
+		AA1E0006240F0A1100B0C3D6 /* HBNativeVisibilityShim.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0005240F0A1100B0C3D6 /* HBNativeVisibilityShim.m */; };
+		AA1E0007240F0A1100B0C3D7 /* MenuBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0006240F0A1100B0C3D7 /* MenuBarLayout.swift */; };
+		AA1E0008240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E0007240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +85,17 @@
 		967F4B2B24169CB200F18D3C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		967F4B2C24169CB400F18D3C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B1326443261D7E0200319D35 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		AA1E0000240F0A1100B0C3D1 /* MenuBarEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarEngine.swift; sourceTree = "<group>"; };
+		AA1E0001240F0A1100B0C3D2 /* LegacyLengthEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyLengthEngine.swift; sourceTree = "<group>"; };
+		AA1E0002240F0A1100B0C3D3 /* MenuBarEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarEngineFactory.swift; sourceTree = "<group>"; };
+		AA1E0003240F0A1100B0C3D4 /* NativeVisibilityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeVisibilityEngine.swift; sourceTree = "<group>"; };
+		AA1E0004240F0A1100B0C3D5 /* NativeVisibilityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeVisibilityBridge.swift; sourceTree = "<group>"; };
+		AA1E0005240F0A1100B0C3D6 /* HBNativeVisibilityShim.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBNativeVisibilityShim.m; sourceTree = "<group>"; };
+		AA1E0006240F0A1100B0C3D7 /* MenuBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarLayout.swift; sourceTree = "<group>"; };
+		AA1E0007240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityMenuBarInventory.swift; sourceTree = "<group>"; };
+		AA1E0008240F0A1100B0C3D9 /* HBNativeVisibilityShim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBNativeVisibilityShim.h; sourceTree = "<group>"; };
+		AA1E0009240F0A1100B0C3DA /* Hidden-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hidden-Bridging-Header.h; sourceTree = "<group>"; };
+		AA1E000A240F0A1100B0C3DB /* Hidden-Direct.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hidden-Direct.entitlements; sourceTree = "<group>"; };
 		B1326445261D7E0200319D35 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B350A2CC23AAFB47003A04AC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		B8404C9A24041A4300E6DBF8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -120,9 +139,42 @@
 		0842CDFD23A9FF7500D14BD4 /* StatusBar */ = {
 			isa = PBXGroup;
 			children = (
+				AA1E000B240F0A1100B0C3DC /* Engine */,
+				AA1E000C240F0A1100B0C3DD /* Layout */,
 				92C97B9022018C1F0007559C /* StatusBarController.swift */,
 			);
 			path = StatusBar;
+			sourceTree = "<group>";
+		};
+		AA1E000B240F0A1100B0C3DC /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E0000240F0A1100B0C3D1 /* MenuBarEngine.swift */,
+				AA1E0001240F0A1100B0C3D2 /* LegacyLengthEngine.swift */,
+				AA1E0002240F0A1100B0C3D3 /* MenuBarEngineFactory.swift */,
+				AA1E000D240F0A1100B0C3DE /* Native */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		AA1E000D240F0A1100B0C3DE /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E0005240F0A1100B0C3D6 /* HBNativeVisibilityShim.m */,
+				AA1E0008240F0A1100B0C3D9 /* HBNativeVisibilityShim.h */,
+				AA1E0004240F0A1100B0C3D5 /* NativeVisibilityBridge.swift */,
+				AA1E0003240F0A1100B0C3D4 /* NativeVisibilityEngine.swift */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+		AA1E000C240F0A1100B0C3DD /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E0006240F0A1100B0C3D7 /* MenuBarLayout.swift */,
+				AA1E0007240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		0842CDFE23A9FF7C00D14BD4 /* Preferences */ = {
@@ -198,6 +250,9 @@
 				929113FA21F9D04200173149 /* Main.storyboard */,
 				929113FD21F9D04200173149 /* Info.plist */,
 				967F4B2A24169CAF00F18D3C /* Localizable.strings */,
+				9220587D22127050008A8B03 /* Hidden.entitlements */,
+				AA1E0009240F0A1100B0C3DA /* Hidden-Bridging-Header.h */,
+				AA1E000A240F0A1100B0C3DB /* Hidden-Direct.entitlements */,
 			);
 			path = hidden;
 			sourceTree = "<group>";
@@ -333,6 +388,14 @@
 				08C20FE223AB452C0035D978 /* AboutViewController.swift in Sources */,
 				00137CDF24A63DB1004AC855 /* Notification.Name+Extension.swift in Sources */,
 				08A5F86423AA09F300981CA5 /* UserDefault+Extension.swift in Sources */,
+				AA1E0006240F0A1100B0C3D7 /* MenuBarLayout.swift in Sources */,
+				AA1E0007240F0A1100B0C3D8 /* AccessibilityMenuBarInventory.swift in Sources */,
+				AA1E0000240F0A1100B0C3D1 /* MenuBarEngine.swift in Sources */,
+				AA1E0001240F0A1100B0C3D2 /* LegacyLengthEngine.swift in Sources */,
+				AA1E0002240F0A1100B0C3D3 /* MenuBarEngineFactory.swift in Sources */,
+				AA1E0003240F0A1100B0C3D4 /* NativeVisibilityEngine.swift in Sources */,
+				AA1E0004240F0A1100B0C3D5 /* NativeVisibilityBridge.swift in Sources */,
+				AA1E0005240F0A1100B0C3D6 /* HBNativeVisibilityShim.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,10 +554,134 @@
 			};
 			name = Release;
 		};
+		AA1E0010240F0A1100B0C3E0 /* Debug-Direct */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"HIDDENBAR_NATIVE_VISIBILITY=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG HIDDENBAR_NATIVE_VISIBILITY";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-Direct";
+		};
+		AA1E0011240F0A1100B0C3E1 /* Release-Direct */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"HIDDENBAR_NATIVE_VISIBILITY=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) HIDDENBAR_NATIVE_VISIBILITY";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = "Release-Direct";
+		};
 		9291141821F9D04200173149 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SWIFT_OBJC_BRIDGING_HEADER = "hidden/Hidden-Bridging-Header.h";
 				CODE_SIGN_ENTITLEMENTS = Hidden/Hidden.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -520,6 +707,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SWIFT_OBJC_BRIDGING_HEADER = "hidden/Hidden-Bridging-Header.h";
 				CODE_SIGN_ENTITLEMENTS = Hidden/Hidden.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -541,12 +729,66 @@
 			};
 			name = Release;
 		};
+		AA1E0012240F0A1100B0C3E2 /* Debug-Direct */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hidden/Hidden-Direct.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_TEAM = W777S7V8TN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = hidden/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwarvesv.minimalbar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "hidden/Hidden-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = "Debug-Direct";
+		};
+		AA1E0013240F0A1100B0C3E3 /* Release-Direct */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hidden/Hidden-Direct.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_TEAM = W777S7V8TN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = hidden/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwarvesv.minimalbar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "hidden/Hidden-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = "Release-Direct";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		929113EC21F9D04100173149 /* Build configuration list for PBXProject "Hidden Bar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
+				AA1E0010240F0A1100B0C3E0 /* Debug-Direct */,
+				AA1E0011240F0A1100B0C3E1 /* Release-Direct */,
 				9291141521F9D04200173149 /* Debug */,
 				9291141621F9D04200173149 /* Release */,
 			);
@@ -556,6 +798,8 @@
 		9291141721F9D04200173149 /* Build configuration list for PBXNativeTarget "Hidden Bar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
+				AA1E0012240F0A1100B0C3E2 /* Debug-Direct */,
+				AA1E0013240F0A1100B0C3E3 /* Release-Direct */,
 				9291141821F9D04200173149 /* Debug */,
 				9291141921F9D04200173149 /* Release */,
 			);
