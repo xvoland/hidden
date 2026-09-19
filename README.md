@@ -11,6 +11,8 @@
 	<img width="200" height="200" margin-right="100%" src="img/icon_512@2x.png">
 </p>
 <p align="center">
+=======
+<p align="center">
 <a href="https://github.com/xvoland/hidden/releases/latest">
 		<img src="https://img.shields.io/badge/download-latest-brightgreen.svg" alt="download">
   </a>
